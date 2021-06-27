@@ -1,0 +1,32 @@
+name: Qasim's first site
+
+on:
+  push:
+    branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+#     - name: Build the site in the container
+#       run: |
+#         docker run \
+#         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+#         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+    
+    # runs a single command using the runner shell
+    - name: installing node.js
+      uses: actions/setup-node@v2.1.5
+      with:
+        node-key: 12
+        
+    - name: installing surge
+      run: npm install -g surge
+      
+    - name: deploying with surge
+      run: surge ./ cold-polish.surge.sh --token {{ 4c450ecdf353329ec1237151122fc5e8 }}
