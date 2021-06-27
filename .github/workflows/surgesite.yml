@@ -26,7 +26,7 @@ jobs:
         node-key: 12
         
     - name: installing surge
-      run: npm install -g surge
+      run: sudo npm install -g surge
       
     - name: deploying with surge
       run: surge ./ cold-polish.surge.sh --token {{ 4c450ecdf353329ec1237151122fc5e8 }}
